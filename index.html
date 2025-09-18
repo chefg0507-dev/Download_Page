@@ -3,114 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Download Setelah Subscribe</title>
+  <title>Download File</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #0f172a, #1e293b);
+      color: white;
       text-align: center;
-      background: linear-gradient(135deg, #ff4e50, #f9d423);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
+      margin: 0;
+      padding: 0;
     }
-    .card {
-      max-width: 400px;
-      width: 100%;
-      background: white;
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      animation: fadeIn 0.8s ease;
+
+    h1 {
+      margin-top: 40px;
+      font-size: 26px;
+      animation: fadeIn 1s ease-in-out;
     }
-    h2 {
-      color: #333;
-      margin-bottom: 10px;
+
+    .step {
+      display: none;
+      margin-top: 40px;
+      animation: fadeIn 0.8s ease-in-out;
     }
-    p {
-      color: #555;
-      margin-bottom: 20px;
-    }
-    button {
+
+    .active {
       display: block;
-      width: 100%;
-      margin-top: 15px;
-      padding: 12px;
-      font-size: 16px;
+    }
+
+    button {
+      padding: 14px 28px;
+      margin-top: 20px;
+      font-size: 18px;
+      background: #3b82f6;
+      color: white;
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      transition: transform 0.2s ease, background 0.3s ease;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0px 4px 10px rgba(59,130,246,0.4);
     }
-    .subscribe-btn {
-      background: #ff0000;
-      color: white;
-      font-weight: bold;
-    }
-    .subscribe-btn:hover {
+
+    button:hover {
+      background: #2563eb;
       transform: scale(1.05);
     }
-    .download-btn {
-      background: #4CAF50;
-      color: white;
-      font-weight: bold;
-      display: none;
+
+    a button {
+      background: #22c55e;
+      box-shadow: 0px 4px 10px rgba(34,197,94,0.4);
     }
-    .countdown {
-      display: none;
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-      margin-top: 15px;
+
+    a button:hover {
+      background: #16a34a;
+      transform: scale(1.05);
     }
+
     @keyframes fadeIn {
-      from {opacity: 0; transform: scale(0.95);}
-      to {opacity: 1; transform: scale(1);}
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
-<div class="card">
-  <h2>🎯 Langkah Sebelum Download</h2>
-  <p>Subscribe channel dulu, tunggu 5 detik, lalu klik tombol download.</p>
+  <h1>🎯 Ikuti 3 Langkah Untuk Mendapatkan Link Download</h1>
 
-  <!-- Tombol Subscribe -->
-  <button class="subscribe-btn" onclick="openSubscribe()">🔔 SUBSCRIBE</button>
+  <!-- Langkah 1 -->
+  <div class="step active" id="step1">
+    <p>1️⃣ Klik tombol di bawah untuk <b>Subscribe</b> channel kami:</p>
+    <button onclick="nextStep(1)">📺 Subscribe</button>
+  </div>
 
-  <!-- Countdown -->
-  <div class="countdown" id="countdown"></div>
+  <!-- Langkah 2 -->
+  <div class="step" id="step2">
+    <p>2️⃣ Setelah subscribe, klik tombol untuk <b>Like</b> video:</p>
+    <button onclick="nextStep(2)">👍 Like Video</button>
+  </div>
 
-  <!-- Tombol Download -->
-  <button class="download-btn" id="downloadBtn" onclick="window.location.href='https://www.mediafire.com/file/ggsfnz0zd0chdv8/CarxStreet%252BLibtool1.0.1.apk/file'">
-    ⬇️ DOWNLOAD SEKARANG
-  </button>
-</div>
+  <!-- Langkah 3 -->
+  <div class="step" id="step3">
+    <p>3️⃣ Tinggalkan komentar di video, lalu klik tombol di bawah:</p>
+    <button onclick="nextStep(3)">💬 Saya Sudah Komentar</button>
+  </div>
 
-<script>
-function openSubscribe() {
-  // Ganti dengan link channel kamu
-  window.open("https://www.youtube.com/@Chef_Gaming98");
+  <!-- Link Download -->
+  <div class="step" id="step4">
+    <p>✅ Terima kasih! Klik tombol di bawah untuk mendownload file:</p>
+    <a href="https://www.mediafire.com/file/ggsfnz0zd0chdv8/CarxStreet%252BLibtoolv1.0.1.ChefG.apk/file" target="_blank">
+      <button>⬇️ Download Sekarang</button>
+    </a>
+  </div>
 
-  // Tampilkan countdown
-  let countdownEl = document.getElementById("countdown");
-  countdownEl.style.display = "block";
-
-  let timeLeft = 5;
-  countdownEl.textContent = "⏳ Tunggu " + timeLeft + " detik...";
-
-  let timer = setInterval(() => {
-    timeLeft--;
-    countdownEl.textContent = "⏳ Tunggu " + timeLeft + " detik...";
-    if (timeLeft <= 0) {
-      clearInterval(timer);
-      countdownEl.textContent = "✅ Sekarang kamu bisa download!";
-      document.getElementById("downloadBtn").style.display = "block";
+  <script>
+    function nextStep(step) {
+      document.getElementById(`step${step}`).classList.remove("active");
+      
+      // Arahkan user sesuai langkah
+      if (step === 1) {
+        window.open("https://www.youtube.com/@Chef_Gaming98");
+      }
+      if (step === 2) {
+        window.open("https://youtu.be/HLeqVZ1Ahqo?si=f8wzsNT0xxdde5mw");
+      }
+      
+      document.getElementById(`step${step+1}`).classList.add("active");
     }
-  }, 1000);
-}
-</script>
+  </script>
 
 </body>
 </html>
