@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Setelah Subscribe</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #ff4e50, #f9d423);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .card {
+      max-width: 400px;
+      width: 100%;
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      animation: fadeIn 0.8s ease;
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #555;
+      margin-bottom: 20px;
+    }
+    button {
+      display: block;
+      width: 100%;
+      margin-top: 15px;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+    .subscribe-btn {
+      background: #ff0000;
+      color: white;
+      font-weight: bold;
+    }
+    .subscribe-btn:hover {
+      transform: scale(1.05);
+    }
+    .download-btn {
+      background: #4CAF50;
+      color: white;
+      font-weight: bold;
+      display: none;
+    }
+    .countdown {
+      display: none;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      margin-top: 15px;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.95);}
+      to {opacity: 1; transform: scale(1);}
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h2>🎯 Langkah Sebelum Download</h2>
+  <p>Subscribe channel dulu, tunggu 5 detik, lalu klik tombol download.</p>
+
+  <!-- Tombol Subscribe -->
+  <button class="subscribe-btn" onclick="openSubscribe()">🔔 SUBSCRIBE</button>
+
+  <!-- Countdown -->
+  <div class="countdown" id="countdown"></div>
+
+  <!-- Tombol Download -->
+  <button class="download-btn" id="downloadBtn" onclick="window.location.href='https://www.mediafire.com/file/ggsfnz0zd0chdv8/CarxStreet%252BLibtool1.0.1.apk/file'">
+    ⬇️ DOWNLOAD SEKARANG
+  </button>
+</div>
+
+<script>
+function openSubscribe() {
+  // Ganti dengan link channel kamu
+  window.open("https://www.youtube.com/@Chef_Gaming98");
+
+  // Tampilkan countdown
+  let countdownEl = document.getElementById("countdown");
+  countdownEl.style.display = "block";
+
+  let timeLeft = 5;
+  countdownEl.textContent = "⏳ Tunggu " + timeLeft + " detik...";
+
+  let timer = setInterval(() => {
+    timeLeft--;
+    countdownEl.textContent = "⏳ Tunggu " + timeLeft + " detik...";
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      countdownEl.textContent = "✅ Sekarang kamu bisa download!";
+      document.getElementById("downloadBtn").style.display = "block";
+    }
+  }, 1000);
+}
+</script>
+
+</body>
+</html>
